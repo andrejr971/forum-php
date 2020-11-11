@@ -84,6 +84,37 @@ header.menu a {
   font-weight: bold;
 }
 
+header.menu div div.left {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+header.menu div div.left img {
+  width: 36px;
+  height: 36px;
+}
+
+header.menu div div.left img svg {
+  color: #fff;
+}
+
+header.menu div div.left a.github {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  opacity: 0.8;
+}
+
+header.menu div div.left a.github span {
+  margin-left: 5px;
+}
+
+header.menu div div.left a.github:hover {
+  opacity: 1;
+}
+
 header.menu div div {
   display: flex;
   height: 100%;
@@ -117,3 +148,8 @@ header.menu div a.profile img {
   border: 2px solid var(--green);
 }
 
+@media(max-width: 500px) {
+  header.menu div div.left a.github span {
+    display: none;
+  }
+}

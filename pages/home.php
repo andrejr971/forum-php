@@ -15,7 +15,13 @@
 <body>
   <header class="menu">
     <div>
-      <a href=".">Blog</a>
+      <div class="left">
+        <a href=".">Blog</a>
+        <a class="github" href="https://github.com/andrejr971/forum-php" target="blank">
+          <img src="./assets/github.svg" alt="icon github"> 
+          <span>GitHub</span>
+        </a>
+      </div>
       <div>
         <?php
           if(isset($_SESSION['session'])) {

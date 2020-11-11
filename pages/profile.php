@@ -30,7 +30,7 @@
       <div>
         <a href="profile" class="profile">
           <img 
-            src="<?= $_SESSION['session']['avatar'] 
+            src="<?=  $_SESSION['session']['avatar']  && file_exists("./tmp/{$_SESSION['session']['avatar']}")
               ? "./tmp/{$_SESSION['session']['avatar']}" 
               : "https://ui-avatars.com/api/?name={$_SESSION['session']['name']}&background=1c1b22&color=fff&bold=true&format=svg&size=110" ?>" 
             alt="avatar"

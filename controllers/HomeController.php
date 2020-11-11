@@ -3,20 +3,21 @@
   $connection = include_once('./database/connection.php');
 
   function index($connection) {
-    $sql = "select * from comment order by created_at desc";
+    $sql = "select comment.*, users.* from comment
+      left join users on comment.user_id = users.id order by comment.created_at desc";
     $results = $connection->prepare($sql);
     $results->execute();
 
     return $results->fetchAll(PDO::FETCH_OBJ);
   }
   
-  $comments = index($connection); 
+  $comments = index($connection);
   
   function store($connection, $request) {
     global $comments;
     
     if (isset($_SESSION['session'])) {
-      $sql = "insert into comment (text, user_id, name_user, avatar_user) values (:text, :id, :name, :avatar)";
+      $sql = "insert into comment (text, user_id) values (:text, :id)";
     } else {
       $sql = "insert into comment (text) values (:text)";
     }
@@ -25,8 +26,6 @@
     $results->bindValue(':text', $request);
     if (isset($_SESSION['session'])) {
       $results->bindValue(':id', $_SESSION['session']['id']);
-      $results->bindValue(':name', $_SESSION['session']['name']);
-      $results->bindValue(':avatar', $_SESSION['session']['avatar']);
     } 
 
     $results->execute();

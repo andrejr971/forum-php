@@ -28,7 +28,7 @@
         ?>
           <a href="profile" class="profile">
             <img 
-              src="<?= $_SESSION['session']['avatar'] 
+              src="<?= $_SESSION['session']['avatar']  && file_exists("./tmp/{$_SESSION['session']['avatar']}")
                 ? "./tmp/{$_SESSION['session']['avatar']}" 
                 : "https://ui-avatars.com/api/?name={$_SESSION['session']['name']}&background=1c1b22&color=fff&bold=true&format=svg&size=110" ?>" 
               alt="avatar"
@@ -62,12 +62,12 @@
             <li>
               <div class="avatar">
                 <?php
-                  if (isset($comment->avatar_user)) {
+                  if (isset($comment->avatar) && file_exists("./tmp/{$comment->avatar}")) {
                 ?>
                   <img 
-                    src="<?= $comment->avatar_user 
-                        ? "./tmp/{$comment->avatar_user}" 
-                        : "https://ui-avatars.com/api/?name={$comment->name_user}&background=1c1b22&color=fff&bold=true&format=svg&size=110" ?>"
+                    src="<?= $comment->avatar 
+                        ? "./tmp/{$comment->avatar}" 
+                        : "https://ui-avatars.com/api/?name={$comment->name}&background=1c1b22&color=fff&bold=true&format=svg&size=110" ?>"
                     alt="profile"
                   >
                 <?php
@@ -85,7 +85,7 @@
               <div class="comment">
                 <header>
                   <strong>
-                    <?= $comment->name_user ?? 'Anônimo' ?>
+                    <?= $comment->name ?? 'Anônimo' ?>
                     <span><?= $date->format('d/m/Y - H:i') ?></span>
                   </strong>
                   <?php

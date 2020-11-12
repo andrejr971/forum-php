@@ -62,10 +62,10 @@
             <li>
               <div class="avatar">
                 <?php
-                  if (isset($comment->avatar) && file_exists("./tmp/{$comment->avatar}")) {
+                  if (isset($comment->avatar)) {
                 ?>
                   <img 
-                    src="<?= $comment->avatar 
+                    src="<?= file_exists("./tmp/{$comment->avatar}")
                         ? "./tmp/{$comment->avatar}" 
                         : "https://ui-avatars.com/api/?name={$comment->name}&background=1c1b22&color=fff&bold=true&format=svg&size=110" ?>"
                     alt="profile"

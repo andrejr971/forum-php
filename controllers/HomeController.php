@@ -3,8 +3,8 @@
   $connection = include_once('./database/connection.php');
 
   function index($connection) {
-    $sql = "select comment.*, users.* from comment
-      left join users on comment.user_id = users.id order by comment.created_at desc";
+    $sql = "select comment.id as comment_id, comment.text, comment.created_at, users.* from comment
+            left join users on comment.user_id = users.id order by comment.created_at desc";
     $results = $connection->prepare($sql);
     $results->execute();
 
@@ -33,11 +33,13 @@
   }
 
   function destroy($connection, $id) {
-    $sql = "delete from comment where id = :id and user_id = :user_id";
+    $sql = "delete from comment where id = :id";
     $results = $connection->prepare($sql);
     $results->bindValue(':id', $id);
-    $results->bindValue(':user_id', $_SESSION['session']['id']);
+    // $results->bindValue(':user_id', $_SESSION['session']['id']);
     $results->execute();
+
+
   }
 
   if (isset($_POST['comment'])) {

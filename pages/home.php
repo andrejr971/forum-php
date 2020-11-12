@@ -87,11 +87,12 @@
                   <strong>
                     <?= $comment->name ?? 'Anônimo' ?>
                     <span><?= $date->format('d/m/Y - H:i') ?></span>
+
                   </strong>
                   <?php
-                    if (isset($comment->user_id) && isset($_SESSION['session']) && $comment->user_id === $_SESSION['session']['id']) {
+                    if (isset($comment->id) && isset($_SESSION['session']) && $comment->id === $_SESSION['session']['id']) {
                     ?>
-                      <a href="drop/<?= $comment->id ?>">
+                      <a href="drop/<?= $comment->comment_id ?>">
                         <span class="material-icons">
                           close
                         </span>
